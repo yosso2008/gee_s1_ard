@@ -79,7 +79,7 @@ var s1 = ee.ImageCollection('COPERNICUS/S1_GRD_FLOAT')
       .filter(ee.Filter.listContains('transmitterReceiverPolarisation', 'VH'))
       .filterDate(params.START_DATE, params.STOP_DATE)
       .filterBounds(params.GEOMETRY);
-  
+      .filter(ee.Filter.contains('.geo', roi))  
   //select orbit
   if (params.ORBIT !== 'BOTH'){s1 = s1.filter(ee.Filter.eq('orbitProperties_pass', params.ORBIT))}
   
